@@ -40,6 +40,24 @@
       line-height: 1.38;
     }
 
+    body.dark-mode {
+      --ink: #e5f2ec;
+      --muted: #b6c9c0;
+      --page: #101a16;
+      --field: #15251e;
+      --green: #77d0a5;
+      --green-dark: #a8f0cb;
+      --mint: #20372d;
+      --gold: #f2c45c;
+      --gold-soft: #2b2516;
+      --line: #345345;
+      --code: #07120e;
+      --shadow: 0 18px 44px rgba(0, 0, 0, 0.38);
+      background:
+        radial-gradient(circle at top left, rgba(242, 196, 92, 0.15), transparent 30%),
+        linear-gradient(135deg, #07120e 0%, #0f1d18 48%, #091411 100%);
+    }
+
     a {
       color: var(--green-dark);
       font-weight: 750;
@@ -51,6 +69,76 @@
     a:focus {
       color: #0d3d2b;
       border-bottom-color: currentColor;
+    }
+
+    body.dark-mode a:hover,
+    body.dark-mode a:focus {
+      color: #d8ffe9;
+    }
+
+    .mode-switch {
+      position: fixed;
+      top: 16px;
+      right: 18px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--green-dark);
+      box-shadow: 0 8px 22px rgba(22, 76, 57, 0.12);
+      font-size: 12px;
+      font-weight: 850;
+      backdrop-filter: blur(8px);
+    }
+
+    body.dark-mode .mode-switch {
+      background: rgba(7, 18, 14, 0.86);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.32);
+    }
+
+    .mode-switch input {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .switch-track {
+      display: inline-flex;
+      align-items: center;
+      width: 45px;
+      height: 24px;
+      padding: 3px;
+      border-radius: 999px;
+      background: #d5e8dd;
+      border: 1px solid var(--line);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .switch-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 2px 5px rgba(22, 76, 57, 0.24);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    #darkModeToggle:checked + .switch-track {
+      background: #214435;
+      border-color: #77d0a5;
+    }
+
+    #darkModeToggle:checked + .switch-track .switch-thumb {
+      transform: translateX(20px);
+      background: #f2c45c;
     }
 
     .shell {
@@ -120,6 +208,10 @@
       border-radius: 8px;
       padding: 10px;
       min-height: 170px;
+    }
+
+    body.dark-mode .hero-art {
+      background: linear-gradient(180deg, #13231d, #0c1713);
     }
 
     .hero-art svg {
@@ -223,7 +315,7 @@
     .tool-card {
       border: 1.5px solid var(--line);
       border-radius: 8px;
-      background: #fff;
+      background: var(--page);
       overflow: hidden;
     }
 
@@ -274,7 +366,7 @@
     .mini {
       padding: 10px 11px;
       border-radius: 8px;
-      background: #fbfdfb;
+      background: var(--page);
       border: 1px solid var(--line);
       font-size: 13px;
     }
@@ -376,6 +468,10 @@
         background: #fff;
       }
 
+      .mode-switch {
+        display: none;
+      }
+
       .shell {
         margin: 0;
         padding: 0;
@@ -396,6 +492,17 @@
   </style>
 </head>
 <body>
+  <div class="mode-switch" aria-label="Display mode">
+    <span>Light</span>
+    <label>
+      <input type="checkbox" id="darkModeToggle" aria-label="Toggle dark mode" />
+      <span class="switch-track" aria-hidden="true">
+        <span class="switch-thumb"></span>
+      </span>
+    </label>
+    <span>Dark</span>
+  </div>
+
   <main class="shell">
     <article class="page" aria-labelledby="page-title">
       <header>
@@ -521,5 +628,23 @@ python3 --version</div>
       </footer>
     </article>
   </main>
+  <script>
+    const toggle = document.getElementById("darkModeToggle");
+    const savedMode = localStorage.getItem("pythonSetupGuideTheme");
+
+    function setTheme(enabled) {
+      document.body.classList.toggle("dark-mode", enabled);
+      toggle.checked = enabled;
+      localStorage.setItem("pythonSetupGuideTheme", enabled ? "dark" : "light");
+    }
+
+    if (savedMode === "dark") {
+      setTheme(true);
+    }
+
+    toggle.addEventListener("change", () => {
+      setTheme(toggle.checked);
+    });
+  </script>
 </body>
 </html>
