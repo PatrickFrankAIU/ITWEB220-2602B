@@ -1,15 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Documentation Links</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ITWEB220-2602B Course Guides</title>
+  <style>
+    :root {
+      --ink: #14262c;
+      --muted: #5c6b70;
+      --bg: #eef5f6;
+      --panel: #ffffff;
+      --brand: #123f4c;
+      --brand-2: #1d6372;
+      --line: #c8dadd;
+      --soft: #e7f2f4;
+      --accent: #f0b84b;
+      --shadow: 0 18px 44px rgba(18, 63, 76, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(240, 184, 75, 0.2), transparent 28%),
+        linear-gradient(135deg, #f8fbfb 0%, var(--bg) 48%, #e6f1f3 100%);
+      font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(100% - 32px, 1000px);
+      margin: 36px auto;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 34px 36px 28px;
+      border-top: 10px solid var(--brand);
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbfb 100%);
+      text-align: center;
+    }
+
+    .logo {
+      display: block;
+      width: min(720px, 92%);
+      height: auto;
+      margin: 0 auto 28px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--brand);
+      font-size: clamp(34px, 6vw, 54px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      max-width: 720px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .course-note {
+      display: inline-block;
+      margin: 18px auto 0;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--brand);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .content {
+      padding: 30px 36px 34px;
+    }
+
+    .instructor {
+      margin: 0 0 28px;
+      color: var(--brand);
+      font-size: 17px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      color: var(--brand);
+      font-size: 28px;
+      line-height: 1.12;
+      text-align: center;
+    }
+
+    .section-copy {
+      max-width: 680px;
+      margin: 0 auto 22px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin: 0 0 28px;
+    }
+
+    .guide-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 210px;
+      padding: 22px;
+      border: 1.5px solid var(--line);
+      border-radius: 10px;
+      background: #fbfdfd;
+      text-decoration: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .guide-card:hover,
+    .guide-card:focus {
+      transform: translateY(-3px);
+      border-color: var(--brand-2);
+      box-shadow: 0 12px 26px rgba(18, 63, 76, 0.13);
+      outline: none;
+    }
+
+    .guide-label {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      min-height: 28px;
+      margin-bottom: 16px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #231907;
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .guide-card h3 {
+      margin: 0 0 10px;
+      color: var(--brand);
+      font-size: 23px;
+      line-height: 1.12;
+    }
+
+    .guide-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15.5px;
+    }
+
+    .open-note {
+      margin-top: auto;
+      padding-top: 18px;
+      color: var(--brand-2);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .quick-start {
+      padding: 20px 22px;
+      border-radius: 10px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+    }
+
+    .quick-start h2 {
+      margin-bottom: 12px;
+      text-align: left;
+      font-size: 23px;
+    }
+
+    .quick-start ol {
+      margin: 0;
+      padding-left: 24px;
+      color: var(--ink);
+      font-size: 15.5px;
+    }
+
+    .quick-start li {
+      margin: 7px 0;
+      padding-left: 4px;
+    }
+
+    footer {
+      padding: 16px 36px;
+      background: var(--brand);
+      color: #e6f4f7;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+      }
+
+      .hero,
+      .content,
+      footer {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .guide-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Documentation</h1>
-  <ul>
-    <li><a href="documentation/github_portfolio_guide.html">GitHub Portfolio Guide</a></li>
-    <li><a href="documentation/installation_guide.html">Installation Guide</a></li>
-  </ul>
+  <main class="page">
+    <section class="hero" aria-labelledby="course-title">
+      <img class="logo" alt="DigitalCrafts Logo" src="https://github.com/user-attachments/assets/fc5fbc04-8759-40bf-a0b2-acf8218a56b0" />
+      <h1 id="course-title">ITWEB220-2602B</h1>
+      <p class="intro">Welcome to the course repository for <strong>ITWEB220-2602B</strong> at <strong>Digital Crafts</strong>.</p>
+      <p class="course-note">For enrolled students only. This is not an open course.</p>
+    </section>
+
+    <section class="content" aria-labelledby="guides-title">
+      <p class="instructor">Instructor: Patrick Frank</p>
+
+      <h2 id="guides-title">Course Setup Guides</h2>
+      <p class="section-copy">Use these guides to get ready for class work, optional local practice, and GitHub portfolio activities.</p>
+
+      <div class="guide-grid">
+        <a class="guide-card" href="documentation/installation_guide.html">
+          <span class="guide-label">Setup</span>
+          <h3>Install Python and VS Code</h3>
+          <p>Set up Python 3, VS Code, the Python extension, and Pylance on your computer.</p>
+          <span class="open-note">Open guide</span>
+        </a>
+
+        <a class="guide-card" href="documentation/github_portfolio_guide.html">
+          <span class="guide-label">Portfolio</span>
+          <h3>Create Your GitHub Portfolio</h3>
+          <p>Build and polish your GitHub profile and portfolio materials.</p>
+          <span class="open-note">Open guide</span>
+        </a>
+      </div>
+
+      <section class="quick-start" aria-labelledby="quick-start-title">
+        <h2 id="quick-start-title">Quick Start</h2>
+        <ol>
+          <li>Start with the Python and VS Code setup guide if you want to code on your own computer.</li>
+          <li>Use the GitHub portfolio guide when you are ready to work on your public profile and portfolio.</li>
+          <li>Check this repository during the course for examples, side projects, and supporting files.</li>
+        </ol>
+      </section>
+    </section>
+
+    <footer>
+      ITWEB220-2602B at Digital Crafts
+    </footer>
+  </main>
 </body>
 </html>
