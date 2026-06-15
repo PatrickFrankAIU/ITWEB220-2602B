@@ -32,8 +32,89 @@
       line-height: 1.5;
     }
 
+    body.dark-mode {
+      --ink: #e7f4f7;
+      --muted: #b7cbd0;
+      --bg: #071316;
+      --panel: #101e22;
+      --brand: #9adbe7;
+      --brand-2: #78c6d5;
+      --line: #33545c;
+      --soft: #172a30;
+      --accent: #f0b84b;
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
+      background:
+        radial-gradient(circle at top left, rgba(240, 184, 75, 0.13), transparent 28%),
+        linear-gradient(135deg, #050d10 0%, var(--bg) 48%, #0b1a1e 100%);
+    }
+
     a {
       color: inherit;
+    }
+
+    .mode-switch {
+      position: fixed;
+      top: 16px;
+      right: 18px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--brand);
+      box-shadow: 0 8px 22px rgba(18, 63, 76, 0.14);
+      font-size: 12px;
+      font-weight: 850;
+      backdrop-filter: blur(8px);
+    }
+
+    body.dark-mode .mode-switch {
+      background: rgba(5, 13, 16, 0.88);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .mode-switch input {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .switch-track {
+      display: inline-flex;
+      align-items: center;
+      width: 45px;
+      height: 24px;
+      padding: 3px;
+      border-radius: 999px;
+      background: #d7e7ea;
+      border: 1px solid var(--line);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .switch-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 2px 5px rgba(18, 63, 76, 0.25);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    #darkModeToggle:checked + .switch-track {
+      background: #17333a;
+      border-color: #78c6d5;
+    }
+
+    #darkModeToggle:checked + .switch-track .switch-thumb {
+      transform: translateX(20px);
+      background: var(--accent);
     }
 
     .page {
@@ -51,6 +132,10 @@
       border-top: 10px solid var(--brand);
       background: linear-gradient(180deg, #ffffff 0%, #f7fbfb 100%);
       text-align: center;
+    }
+
+    body.dark-mode .hero {
+      background: linear-gradient(180deg, #13262c 0%, #101e22 100%);
     }
 
     .logo {
@@ -132,6 +217,10 @@
       background: #fbfdfd;
       text-decoration: none;
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    body.dark-mode .guide-card {
+      background: #13262c;
     }
 
     .guide-card:hover,
@@ -232,9 +321,34 @@
         grid-template-columns: 1fr;
       }
     }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+
+      .mode-switch {
+        display: none;
+      }
+
+      .page {
+        box-shadow: none;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="mode-switch" aria-label="Display mode">
+    <span>Light</span>
+    <label>
+      <input type="checkbox" id="darkModeToggle" aria-label="Toggle dark mode" />
+      <span class="switch-track" aria-hidden="true">
+        <span class="switch-thumb"></span>
+      </span>
+    </label>
+    <span>Dark</span>
+  </div>
+
   <main class="page">
     <section class="hero" aria-labelledby="course-title">
       <img class="logo" alt="DigitalCrafts Logo" src="https://github.com/user-attachments/assets/fc5fbc04-8759-40bf-a0b2-acf8218a56b0" />
@@ -279,5 +393,23 @@
       ITWEB220-2602B at Digital Crafts
     </footer>
   </main>
+  <script>
+    const toggle = document.getElementById("darkModeToggle");
+    const savedMode = localStorage.getItem("itweb220IndexTheme");
+
+    function setTheme(enabled) {
+      document.body.classList.toggle("dark-mode", enabled);
+      toggle.checked = enabled;
+      localStorage.setItem("itweb220IndexTheme", enabled ? "dark" : "light");
+    }
+
+    if (savedMode === "dark") {
+      setTheme(true);
+    }
+
+    toggle.addEventListener("change", () => {
+      setTheme(toggle.checked);
+    });
+  </script>
 </body>
 </html>
