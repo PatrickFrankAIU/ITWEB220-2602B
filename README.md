@@ -15,7 +15,7 @@ Use these guides to get ready for class work, optional local practice, and GitHu
 | Guide | Use This For |
 | --- | --- |
 | [Install Python and VS Code](python_vscode_setup_guide.html) | Setting up Python 3, VS Code, the Python extension, and Pylance on your computer. |
-| [Create Your GitHub Portfolio]([github_portfolio_full_guide_v4_no_art_10_12.html](https://patrickfrankaiu.github.io/ITWEB220-2602B/documentation/installation_guide.html)) | Building and polishing your GitHub profile and portfolio materials. |
+| [Create Your GitHub Portfolio](https://patrickfrankaiu.github.io/ITWEB220-2602B/documentation/installation_guide.html) | Building and polishing your GitHub profile and portfolio materials. |
 
 ## Quick Start
 
