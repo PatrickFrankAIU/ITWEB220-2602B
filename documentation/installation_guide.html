@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Setup Guide</title>
+  <style>
+    :root {
+      --ink: #17211f;
+      --muted: #5d6a66;
+      --page: #ffffff;
+      --field: #f3f7f4;
+      --green: #1f6f50;
+      --green-dark: #164c39;
+      --mint: #dff4e9;
+      --gold: #f4b942;
+      --gold-soft: #fff4d6;
+      --line: #bfd4c8;
+      --code: #13231d;
+      --shadow: 0 18px 40px rgba(22, 76, 57, 0.13);
+      --page-width: 8.5in;
+      --page-height: 11in;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(244, 185, 66, 0.22), transparent 30%),
+        linear-gradient(135deg, #e6f1ec 0%, #f8faf7 45%, #eaf5ef 100%);
+      font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      line-height: 1.38;
+    }
+
+    a {
+      color: var(--green-dark);
+      font-weight: 750;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(31, 111, 80, 0.35);
+    }
+
+    a:hover,
+    a:focus {
+      color: #0d3d2b;
+      border-bottom-color: currentColor;
+    }
+
+    .shell {
+      width: min(100%, 980px);
+      margin: 28px auto;
+      padding: 0 14px;
+    }
+
+    .page {
+      width: min(100%, var(--page-width));
+      min-height: var(--page-height);
+      margin: 0 auto;
+      background: var(--page);
+      border: 1px solid rgba(22, 76, 57, 0.14);
+      box-shadow: var(--shadow);
+      padding: 0.38in 0.45in 0.34in;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 12px;
+      background: linear-gradient(180deg, var(--green-dark), var(--green), var(--gold));
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1.35fr 0.92fr;
+      gap: 24px;
+      align-items: center;
+      padding-bottom: 18px;
+      border-bottom: 3px solid var(--green-dark);
+      position: relative;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--green-dark);
+      font-size: 13px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: 39px;
+      line-height: 1.04;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      max-width: 52ch;
+      color: var(--muted);
+      font-size: 15.5px;
+    }
+
+    .hero-art {
+      background: linear-gradient(180deg, #f7fbf8, #e7f4ed);
+      border: 2px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      min-height: 170px;
+    }
+
+    .hero-art svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .quick-note {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      margin: 18px 0 16px;
+      padding: 13px 15px;
+      background: var(--gold-soft);
+      border: 1.5px solid #e5bf58;
+      border-left: 7px solid var(--gold);
+      border-radius: 8px;
+      font-size: 14.2px;
+    }
+
+    .note-badge {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--green-dark);
+      color: #fff;
+      font-weight: 850;
+      font-size: 17px;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+      color: var(--green-dark);
+      font-size: 20px;
+      line-height: 1.12;
+    }
+
+    .setup-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: setup;
+    }
+
+    .setup-list li {
+      counter-increment: setup;
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 10px;
+      padding: 11px 12px;
+      background: var(--field);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .setup-list li::before {
+      content: counter(setup);
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-weight: 850;
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    .step-heading {
+      margin: 0 0 4px;
+      color: var(--green-dark);
+      font-size: 15.5px;
+      font-weight: 850;
+    }
+
+    .step-copy {
+      margin: 0;
+      color: var(--ink);
+      font-size: 13.5px;
+    }
+
+    .side-stack {
+      display: grid;
+      gap: 13px;
+    }
+
+    .tool-card {
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .tool-card h3 {
+      margin: 0;
+      padding: 9px 12px;
+      background: var(--mint);
+      color: var(--green-dark);
+      font-size: 16px;
+      line-height: 1.1;
+    }
+
+    .tool-card ul {
+      margin: 0;
+      padding: 10px 13px 12px 30px;
+      color: var(--ink);
+      font-size: 13.4px;
+    }
+
+    .tool-card li {
+      margin: 4px 0;
+      padding-left: 2px;
+    }
+
+    .tool-card li::marker {
+      color: var(--green);
+    }
+
+    .code-box {
+      margin: 8px 0 0;
+      padding: 10px 12px;
+      background: var(--code);
+      color: #e6fff0;
+      border-radius: 8px;
+      font-family: "Cascadia Code", "Consolas", monospace;
+      font-size: 13px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .mini {
+      padding: 10px 11px;
+      border-radius: 8px;
+      background: #fbfdfb;
+      border: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .mini strong {
+      display: block;
+      color: var(--green-dark);
+      font-size: 13.5px;
+      margin-bottom: 3px;
+    }
+
+    .finish {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, var(--green-dark), var(--green));
+      color: #fff;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .finish p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .finish strong {
+      font-size: 15px;
+    }
+
+    .finish .tag {
+      padding: 7px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    footer {
+      margin-top: 13px;
+      padding-top: 9px;
+      border-top: 2px solid var(--line);
+      color: var(--muted);
+      font-size: 11.8px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    footer span:first-child {
+      color: var(--green-dark);
+      font-weight: 800;
+    }
+
+    @media (max-width: 780px) {
+      .shell {
+        margin: 0;
+        padding: 0;
+      }
+
+      .page {
+        min-height: auto;
+        border: 0;
+        box-shadow: none;
+        padding: 24px 22px 26px 30px;
+      }
+
+      header,
+      .main-grid,
+      .mini-grid,
+      .finish {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 33px;
+      }
+
+      .hero-art {
+        min-height: auto;
+      }
+
+      .finish .tag {
+        justify-self: start;
+      }
+    }
+
+    @media print {
+      @page {
+        size: letter;
+        margin: 0;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .shell {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+
+      .page {
+        width: var(--page-width);
+        min-height: var(--page-height);
+        box-shadow: none;
+        border: 0;
+      }
+
+      a {
+        color: var(--green-dark);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="page" aria-labelledby="page-title">
+      <header>
+        <div>
+          <p class="eyebrow">Beginner Python setup</p>
+          <h1 id="page-title">Install Python and VS Code</h1>
+          <p class="subtitle">Local setup is optional, but strongly encouraged. It lets you practice during class, try examples from the class GitHub repo, and build small side projects on your own computer.</p>
+        </div>
+
+        <div class="hero-art" aria-label="Illustration of a laptop running Python code">
+          <svg viewBox="0 0 520 320" role="img" aria-labelledby="svg-title svg-desc" xmlns="http://www.w3.org/2000/svg">
+            <title id="svg-title">Python coding setup illustration</title>
+            <desc id="svg-desc">A laptop screen with a Python file, extension icons, and a completed setup checklist.</desc>
+            <rect x="24" y="30" width="328" height="208" rx="12" fill="#13231d"/>
+            <rect x="42" y="58" width="292" height="158" rx="8" fill="#fbfdfb"/>
+            <rect x="42" y="58" width="292" height="28" rx="8" fill="#1f6f50"/>
+            <circle cx="60" cy="72" r="5" fill="#fff4d6"/>
+            <circle cx="78" cy="72" r="5" fill="#dff4e9"/>
+            <circle cx="96" cy="72" r="5" fill="#f4b942"/>
+            <text x="60" y="117" fill="#164c39" font-family="Consolas, monospace" font-size="18" font-weight="700">hello.py</text>
+            <text x="60" y="152" fill="#17211f" font-family="Consolas, monospace" font-size="17">print("Hello, Python!")</text>
+            <rect x="24" y="238" width="328" height="18" rx="4" fill="#bfd4c8"/>
+            <rect x="5" y="256" width="366" height="16" rx="8" fill="#164c39"/>
+            <rect x="376" y="50" width="116" height="58" rx="8" fill="#fff4d6" stroke="#e5bf58" stroke-width="3"/>
+            <text x="407" y="86" fill="#164c39" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">Py</text>
+            <rect x="376" y="130" width="116" height="58" rx="8" fill="#dff4e9" stroke="#bfd4c8" stroke-width="3"/>
+            <text x="404" y="166" fill="#164c39" font-family="Segoe UI, Arial, sans-serif" font-size="23" font-weight="800">VS</text>
+            <path d="M391 228h86" stroke="#1f6f50" stroke-width="10" stroke-linecap="round"/>
+            <path d="M391 260h86" stroke="#1f6f50" stroke-width="10" stroke-linecap="round"/>
+            <path d="M392 224l10 10 20-24" fill="none" stroke="#f4b942" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M392 256l10 10 20-24" fill="none" stroke="#f4b942" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </header>
+
+      <section class="quick-note" aria-label="Important note">
+        <span class="note-badge">!</span>
+        <div><strong>Assignments are still completed in the course's web-based environments.</strong> This setup is for practice, class demonstrations, the GitHub repo, and extra projects. If installation gets difficult, keep going with the course tools and ask for help.</div>
+      </section>
+
+      <div class="main-grid">
+        <section aria-labelledby="steps-title">
+          <h2 class="section-title" id="steps-title">Setup Checklist</h2>
+          <ol class="setup-list">
+            <li>
+              <div>
+                <p class="step-heading">Install Python 3</p>
+                <p class="step-copy">Go to <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org/downloads</a> and install the current Python 3 release. On Windows, check <strong>Add Python to PATH</strong> on the first installer screen.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <p class="step-heading">Install Visual Studio Code</p>
+                <p class="step-copy">Go to <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a>, download VS Code for your operating system, and run the installer.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <p class="step-heading">Add the Python extension</p>
+                <p class="step-copy">Open VS Code, select <strong>Extensions</strong>, search for <strong>Python</strong>, and install the Microsoft extension. Direct link: <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python" target="_blank" rel="noopener">Python extension</a>.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <p class="step-heading">Add the Pylance extension</p>
+                <p class="step-copy">In Extensions, search for <strong>Pylance</strong> and install the Microsoft extension. Direct link: <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance" target="_blank" rel="noopener">Pylance extension</a>.</p>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <aside class="side-stack" aria-label="Testing your setup">
+          <section class="tool-card">
+            <h3>Check Python</h3>
+            <ul>
+              <li>Open Terminal, Command Prompt, or PowerShell.</li>
+              <li>Try one of these commands:</li>
+            </ul>
+            <div class="code-box">python --version
+py --version
+python3 --version</div>
+          </section>
+
+          <section class="tool-card">
+            <h3>Run a Tiny Program</h3>
+            <ul>
+              <li>In VS Code, create a file named <strong>hello.py</strong>.</li>
+              <li>Add this line, save the file, and run it:</li>
+            </ul>
+            <div class="code-box">print("Hello, Python!")</div>
+          </section>
+
+          <section class="tool-card">
+            <h3>What Good Looks Like</h3>
+            <ul>
+              <li>VS Code opens normally.</li>
+              <li>A Python version number appears in the terminal.</li>
+              <li>Your program prints <strong>Hello, Python!</strong>.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section class="mini-grid" aria-label="Helpful reminders">
+        <div class="mini">
+          <strong>Windows reminder</strong>
+          If <strong>python --version</strong> does not work, try <strong>py --version</strong>. If neither works, Python may need to be added to PATH.
+        </div>
+        <div class="mini">
+          <strong>Mac or Linux reminder</strong>
+          If <strong>python --version</strong> does not work, try <strong>python3 --version</strong>. Some systems keep Python 3 under that command.
+        </div>
+      </section>
+
+      <section class="finish" aria-label="Completion message">
+        <p><strong>When you finish:</strong> you are ready to follow class examples locally, explore the GitHub repo, and build small practice programs outside the required course environment.</p>
+        <span class="tag">Ready for class</span>
+      </section>
+
+      <footer>
+        <span>Python Setup Guide</span>
+        <span>Python 3 + VS Code + Python extension + Pylance</span>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
