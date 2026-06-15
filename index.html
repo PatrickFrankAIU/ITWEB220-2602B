@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ITWEB220-2602B Course Guides</title>
+  <title>JavaScript Web Course Guides</title>
   <style>
     :root {
       --ink: #14262c;
@@ -352,8 +352,8 @@
   <main class="page">
     <section class="hero" aria-labelledby="course-title">
       <img class="logo" alt="DigitalCrafts Logo" src="https://github.com/user-attachments/assets/fc5fbc04-8759-40bf-a0b2-acf8218a56b0" />
-      <h1 id="course-title">ITWEB220-2602B</h1>
-      <p class="intro">Welcome to the course repository for <strong>ITWEB220-2602B</strong> at <strong>Digital Crafts</strong>.</p>
+      <h1 id="course-title">JavaScript Web Course</h1>
+      <p class="intro">Welcome to the course repository for this <strong>JavaScript/web course</strong> at <strong>Digital Crafts</strong>.</p>
       <p class="course-note">For enrolled students only. This is not an open course.</p>
     </section>
 
@@ -366,8 +366,8 @@
       <div class="guide-grid">
         <a class="guide-card" href="documentation/installation_guide.html">
           <span class="guide-label">Setup</span>
-          <h3>Install Python and VS Code</h3>
-          <p>Set up Python 3, VS Code, the Python extension, and Pylance on your computer.</p>
+          <h3>Install VS Code, Live Server, and Git</h3>
+          <p>Set up VS Code, the Live Server extension, Git, command-line Git identity, and browser-based preview tools.</p>
           <span class="open-note">Open guide</span>
         </a>
 
@@ -382,25 +382,25 @@
       <section class="quick-start" aria-labelledby="quick-start-title">
         <h2 id="quick-start-title">Quick Start</h2>
         <ol>
-          <li>Start with the Python and VS Code setup guide if you want to code on your own computer.</li>
+          <li>Start with the VS Code, Live Server, and Git setup guide so you can code on your own computer.</li>
           <li>Use the GitHub portfolio guide when you are ready to work on your public profile and portfolio.</li>
-          <li>Check this repository during the course for examples, side projects, and supporting files.</li>
+          <li>Check this repository during the course for HTML, CSS, JavaScript examples, side projects, and supporting files.</li>
         </ol>
       </section>
     </section>
 
     <footer>
-      ITWEB220-2602B at Digital Crafts
+      JavaScript Web Course at Digital Crafts
     </footer>
   </main>
   <script>
     const toggle = document.getElementById("darkModeToggle");
-    const savedMode = localStorage.getItem("itweb220IndexTheme");
+    const savedMode = localStorage.getItem("javascriptWebIndexTheme");
 
     function setTheme(enabled) {
       document.body.classList.toggle("dark-mode", enabled);
       toggle.checked = enabled;
-      localStorage.setItem("itweb220IndexTheme", enabled ? "dark" : "light");
+      localStorage.setItem("javascriptWebIndexTheme", enabled ? "dark" : "light");
     }
 
     if (savedMode === "dark") {
