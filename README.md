@@ -1,5 +1,26 @@
-<img alt="DigitalCrafts Logo - Hires" src="https://github.com/user-attachments/assets/fc5fbc04-8759-40bf-a0b2-acf8218a56b0" />
+<p align="center">
+  <img alt="DigitalCrafts Logo" src="DC_logo.png" width="720">
+</p>
 
 # ITWEB220-2602B
-For students in ITWEB220-2602B at Digital Crafts. This is not an open course.
-Patrick Frank, Instructor
+
+Welcome to the course repository for **ITWEB220-2602B** at **Digital Crafts**.
+
+This repository is for students enrolled in **ITWEB220-2602B**. It is not an open course.
+
+**Instructor:** Patrick Frank
+
+## Course Setup Guides
+
+Use these guides to get ready for class work, optional local practice, and GitHub portfolio activities.
+
+| Guide | Use This For |
+| --- | --- |
+| [Install Python and VS Code](python_vscode_setup_guide.html) | Setting up Python 3, VS Code, the Python extension, and Pylance on your computer. |
+| [Create Your GitHub Portfolio](github_portfolio_full_guide_v4_no_art_10_12.html) | Building and polishing your GitHub profile and portfolio materials. |
+
+## Quick Start
+
+1. Start with the Python and VS Code setup guide if you want to code on your own computer.
+2. Use the GitHub portfolio guide when you are ready to work on your public profile and portfolio.
+3. Check this repository during the course for examples, side projects, and supporting files.
