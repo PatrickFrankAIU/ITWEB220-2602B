@@ -1,6 +1,4 @@
-<p align="center">
-  <img alt="DigitalCrafts Logo" src="DC_logo.png" width="720">
-</p>
+<img alt="DigitalCrafts Logo - Hires" src="https://github.com/user-attachments/assets/fc5fbc04-8759-40bf-a0b2-acf8218a56b0" />
 
 # ITWEB220-2602B
 
