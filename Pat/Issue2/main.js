@@ -1,3 +1,3 @@
-let ageYears = prompt("How old are you? (in years)");
+let ageYears = prompt("Please enter your age in years:");
 let ageDays = ageYears * 365;
-console.log("You are appox " + ageDays + " days old."); 
+console.log("You are approximately " + ageDays + " days old.");
